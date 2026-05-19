@@ -1,0 +1,91 @@
+2026-05-20 02:33:52.245 [main] INFO  suwayomi.tachidesk.server.ServerSetup - Running Suwayomi-Server v2.2.2100
+2026-05-20 02:33:52.439 [main] INFO  suwayomi.tachidesk.server.util.AppMutex - Mutex status is clear, Resuming startup.
+2026-05-20 02:33:52.502 [main] INFO  com.zaxxer.hikari.HikariDataSource - Suwayomi-DB-Pool - Starting...
+2026-05-20 02:33:52.624 [main] INFO  com.zaxxer.hikari.pool.HikariPool - Suwayomi-DB-Pool - Added connection conn0: url=jdbc:h2:/home/suwayomi/.local/share/Tachidesk/database user=
+2026-05-20 02:33:52.624 [main] INFO  com.zaxxer.hikari.HikariDataSource - Suwayomi-DB-Pool - Start completed.
+2026-05-20 02:33:52.651 [main] INFO  suwayomi.tachidesk.server.database.DBManager - Using H2 database version 1.4
+2026-05-20 02:33:52.781 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migrations on database jdbc:h2:/home/suwayomi/.local/share/Tachidesk/database
+2026-05-20 02:33:52.815 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Empty database found, creating table for migrations
+2026-05-20 02:33:52.857 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Database version before migrations: null
+2026-05-20 02:33:52.857 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 1: Initial
+2026-05-20 02:33:52.942 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 2: ChapterTableIndexRename
+2026-05-20 02:33:52.945 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 3: DefaultCategory
+2026-05-20 02:33:52.947 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 4: AnimeTablesBatch1
+2026-05-20 02:33:52.953 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 5: AnimeTablesBatch2
+2026-05-20 02:33:52.957 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 6: AnimeTablesBatch3
+2026-05-20 02:33:52.962 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 7: ChapterIsDownloaded
+2026-05-20 02:33:52.969 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 8: ChapterPageCount
+2026-05-20 02:33:52.974 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 9: ChapterLastReadAt
+2026-05-20 02:33:52.979 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 10: MangaAndChapterMeta
+2026-05-20 02:33:52.988 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 11: SourceDropPartOfFactorySource
+2026-05-20 02:33:52.991 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 12: SourceIsNsfw
+2026-05-20 02:33:52.995 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 13: MangaRealUrl
+2026-05-20 02:33:53.000 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 14: MangaRemoveLengthLimit
+2026-05-20 02:33:53.010 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 15: SourceAndExtensionLangAddLengthLimit
+2026-05-20 02:33:53.015 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 16: ChapterIndexRenameToSourceOrder
+2026-05-20 02:33:53.016 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 17: ChapterFetchedAt
+2026-05-20 02:33:53.026 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 18: MangaInLibraryAt
+2026-05-20 02:33:53.032 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 19: RemoveAnime
+2026-05-20 02:33:53.035 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 20: AddMangaLastFetchedAtColumns
+2026-05-20 02:33:53.044 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 21: GlobalAndCategoryMeta
+2026-05-20 02:33:53.050 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 22: MangaThumbnailLastFetched
+2026-05-20 02:33:53.055 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 23: CategoryMetaRefFix
+2026-05-20 02:33:53.060 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 24: MangaUpdateStrategy
+2026-05-20 02:33:53.064 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 25: ChapterRealUrl
+2026-05-20 02:33:53.067 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 26: CategoryIncludeInUpdate
+2026-05-20 02:33:53.069 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 27: AddDefaultCategory
+2026-05-20 02:33:53.070 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 28: AddCascade
+2026-05-20 02:33:53.075 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 29: DropMangaDefaultCategory
+2026-05-20 02:33:53.078 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 30: FixDateUpload
+2026-05-20 02:33:53.080 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 31: AddExtensionRepo
+2026-05-20 02:33:53.083 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 32: FixExtensionRepos
+2026-05-20 02:33:53.084 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 33: TrackRecord
+2026-05-20 02:33:53.089 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 34: CategoryIncludeInDownload
+2026-05-20 02:33:53.092 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 35: TrackSearch
+2026-05-20 02:33:53.095 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 36: SourceMeta
+2026-05-20 02:33:53.098 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 37: RemoveTrackRecordsOfUnsupportedTrackers
+2026-05-20 02:33:53.100 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 38: RemoveTrackRecordsOfUnsupportedTrackersII
+2026-05-20 02:33:53.101 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 39: DeleteDuplicatedChapters
+2026-05-20 02:33:53.103 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 40: AddUniqueConstraintToChapterTable
+2026-05-20 02:33:53.104 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 41: FixDownloadedChaptersWithoutPageCount
+2026-05-20 02:33:53.105 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 42: MangaRemoveLengthLimit_II
+2026-05-20 02:33:53.109 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 43: PreventNegativeLastPageRead
+2026-05-20 02:33:53.111 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 44: FixDownloadedChaptersWithoutPageCountII
+2026-05-20 02:33:53.112 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 45: PreventDuplicatedChapterPages
+2026-05-20 02:33:53.114 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 46: RenamePageImageUrlColumn
+2026-05-20 02:33:53.115 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 47: ChapterScanlatorIncreaseLength
+2026-05-20 02:33:53.119 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 48: AddTrackingColumns
+2026-05-20 02:33:53.132 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 49: FixDuplicatedMetas
+2026-05-20 02:33:53.135 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 50: FixHandlingOfTooLongPageImageUrls
+2026-05-20 02:33:53.137 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 51: AddKoreaderHashToChapterTable
+2026-05-20 02:33:53.141 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 52: RenameCategoryOrderColumn
+2026-05-20 02:33:53.142 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 53: TrackersFixIds
+2026-05-20 02:33:53.146 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migration version 54: MovePostgresToSuwayomiSchema
+2026-05-20 02:33:53.147 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Migrations finished successfully
+2026-05-20 02:33:53.169 [main] INFO  Migration - Running migrations, previous version 0, target version 2
+2026-05-20 02:33:53.170 [main] INFO  Migration - Running migration version 1: InitialMigration
+2026-05-20 02:33:53.178 [main] INFO  Migration - Running migration version 2: FixGlobalUpdateScheduling
+2026-05-20 02:33:53.194 [DefaultDispatcher-worker-2] INFO  suwayomi.tachidesk.server.ServerSetup - Socks Proxy changed - enabled=false address=: , username=[REDACTED], password=[REDACTED]
+2026-05-20 02:33:53.378 [DefaultDispatcher-worker-8] INFO  suwayomi.tachidesk.manga.impl.backup.proto.ProtoBackupExport - Creating automated backup...
+2026-05-20 02:33:53.485 [DefaultDispatcher-worker-1] WARN  suwayomi.tachidesk.server.util.WebInterfaceManager setupWebUI(flavor= WebUI, servedFlavor= WebUI) - no webUI files found, starting download...
+2026-05-20 02:33:54.085 [DefaultDispatcher-worker-3] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager downloadVersion(version= r3147, flavor= WebUI) - Downloading WebUI zip from the Internet...
+2026-05-20 02:33:55.401 [DefaultDispatcher-worker-3] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager - downloadVersionZipFile(WebUI): Downloading WebUI Done.
+2026-05-20 02:33:55.592 [DefaultDispatcher-worker-3] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager isLocalWebUIValid(flavor= WebUI, path= /tmp/Suwayomi-WebUI-r3147) - Verifying WebUI files...
+2026-05-20 02:33:55.603 [main] INFO  io.javalin.Javalin - Starting Javalin ...
+2026-05-20 02:33:55.649 [main] INFO  io.javalin.Javalin - 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2026-05-20 02:33:55.650 [main] INFO  io.javalin.Javalin - Javalin started in 103ms \o/
+2026-05-20 02:33:55.657 [main] INFO  io.javalin.Javalin - Static file handler added: StaticFileConfig(hostedPath=/, directory=/tmp/Tachidesk/webUI-serve, location=EXTERNAL, precompress=false, aliasCheck=org.eclipse.jetty.server.handler.ContextHandler$ApproveAliases@2682cccc, headers={Cache-Control=max-age=0}, mimeTypes={}, roles=[]). File system location: '/tmp/Tachidesk/webUI-serve'
+2026-05-20 02:33:55.660 [main] INFO  io.javalin.Javalin - Listening on http://0.0.0.0:4567/
+2026-05-20 02:33:55.667 [main] INFO  io.javalin.Javalin - You are running Javalin 6.7.0 (released June 22, 2025. Your Javalin version is 331 days old. Consider checking for a newer version.).
+2026-05-20 02:33:56.214 [DefaultDispatcher-worker-4] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager isLocalWebUIValid(flavor= WebUI, path= /tmp/Suwayomi-WebUI-r3147) - Validation succeeded - md5: local= d3e4502790534bcf5da79a40e15561c4; expected= d3e4502790534bcf5da79a40e15561c4
+2026-05-20 02:33:56.222 [DefaultDispatcher-worker-4] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager downloadVersion(version= r3147, flavor= WebUI) - Extracting WebUI zip...
+2026-05-20 02:33:56.306 [DefaultDispatcher-worker-4] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager downloadVersion(version= r3147, flavor= WebUI) - Extracting WebUI zip Done.
+2026-05-20 02:33:56.347 [DefaultDispatcher-worker-4] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager - Serving SPA files for WEBUI

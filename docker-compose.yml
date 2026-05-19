@@ -1,0 +1,39 @@
+
+services:
+  suwayomi:
+    image: ghcr.io/suwayomi/suwayomi-server:stable
+    container_name: suwayomi
+    volumes:
+      - ./data/downloads:/home/suwayomi/.local/share/Tachidesk/downloads
+      - ./data/suwayomi:/home/suwayomi/.local/share/Tachidesk
+    environment:
+      - TZ=Asia/Jerusalem
+      - FLARESOLVERR_ENABLED=true
+      - FLARESOLVERR_URL=http://flaresolverr:8191
+    restart: on-failure:3
+    networks:
+      - manga-net
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+    restart: unless-stopped
+    networks:
+      - manga-net
+
+  frontend:
+    build: ./frontend
+    container_name: manga-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - suwayomi
+    restart: unless-stopped
+    networks:
+      - manga-net
+
+networks:
+  manga-net:
+    driver: bridge
