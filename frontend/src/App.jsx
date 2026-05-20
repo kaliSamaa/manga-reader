@@ -352,12 +352,12 @@ export default function App() {
                 className={`theme-btn ${theme==="mauve"?"active":""}`}
                 onClick={() => setTheme("mauve")}
                 title="Mocha Mauve"
-              ><span className="theme-dot mauve-dot"/>Mauve</button>
+              ><span className="theme-dot mauve-dot"/>sky</button>
               <button
                 className={`theme-btn ${theme==="blue"?"active":""}`}
                 onClick={() => setTheme("blue")}
                 title="Mocha Blue"
-              ><span className="theme-dot blue-dot"/>Blue</button>
+              ><span className="theme-dot blue-dot"/>dash</button>
             </div>
             <div className="source-label">Source</div>
             <select className="source-select" value={selectedSource} onChange={e => setSelectedSource(e.target.value)}>
