@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<entry key="rcostation.xyz.1">rco_readType=1; expires=Sun, 20 May 2029 01:04:16 GMT; path=/</entry>
-<entry key="rcostation.xyz.0">rco_quality=hq; expires=Sun, 20 May 2029 01:04:16 GMT; path=/</entry>
+<entry key="rcostation.xyz.1">rco_readType=1; expires=Sun, 20 May 2029 01:12:17 GMT; path=/</entry>
+<entry key="rcostation.xyz.0">rco_quality=hq; expires=Sun, 20 May 2029 01:12:17 GMT; path=/</entry>
 <entry key="rcostation.xyz.size">2</entry>
 </properties>
