@@ -24,6 +24,9 @@ async function gql(query, variables = {}) {
 const ADD_TO_LIB = `mutation($id: Int!) {
   updateManga(input:{id:$id, patch:{inLibrary:true}}) { manga { id } }
 }`;
+const REMOVE_FROM_LIB = `mutation($id: Int!) {
+  updateManga(input:{id:$id, patch:{inLibrary:false}}) { manga { id } }
+}`;
 const DOWNLOAD_CH = `mutation($id: Int!) {
   downloadChapter(input:{id:$id}) { downloadStatus { chapter { id } } }
 }`;
@@ -105,7 +108,7 @@ function MangaDetail({ manga, onBack, onReadChapter }) {
   const [full, setFull] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [added, setAdded] = useState(false);
+  const [inLib, setInLib] = useState(false);
   const [downloading, setDownloading] = useState({});
 
   useEffect(() => {
@@ -116,13 +119,18 @@ function MangaDetail({ manga, onBack, onReadChapter }) {
       rest(`/api/v1/manga/${manga.id}/chapters`),
     ]).then(([info, chData]) => {
       setFull({ ...info, chapters: Array.isArray(chData) ? chData : (chData.chapters || []) });
+      setInLib(!!info.inLibrary);
       setLoading(false);
     }).catch(e => { setError(e.message); setLoading(false); });
   }, [manga.id]);
 
   const addToLibrary = async () => {
-    try { await gql(ADD_TO_LIB, { id: manga.id }); setAdded(true); }
-    catch { /* fallback: REST */ await fetch(`${BASE}/api/v1/manga/${manga.id}/`, { method:"PATCH", headers:{"Content-Type":"application/json"}, body: JSON.stringify({inLibrary:true}) }); setAdded(true); }
+    try { await gql(ADD_TO_LIB, { id: manga.id }); setInLib(true); }
+    catch { await fetch(`${BASE}/api/v1/manga/${manga.id}/`, { method:"PATCH", headers:{"Content-Type":"application/json"}, body: JSON.stringify({inLibrary:true}) }); setInLib(true); }
+  };
+  const removeFromLibrary = async () => {
+    try { await gql(REMOVE_FROM_LIB, { id: manga.id }); setInLib(false); }
+    catch {}
   };
 
   const downloadChapter = async (ch) => {
@@ -161,9 +169,15 @@ function MangaDetail({ manga, onBack, onReadChapter }) {
             {full.genre?.slice(0,3).map(g => <span key={g} className="badge badge-green">{g}</span>)}
           </div>
           <p className="detail-desc">{full.description?.slice(0, 400)}{full.description?.length > 400 ? "…" : ""}</p>
-          <button className={`lib-btn ${added?"added":""}`} onClick={addToLibrary}>
-            {added ? "✓ In Library" : "+ Add to Library"}
-          </button>
+          <div style={{display:"flex",gap:"8px",flexWrap:"wrap"}}>
+            {!inLib
+              ? <button className="lib-btn" onClick={addToLibrary}>+ Add to Library</button>
+              : <>
+                  <button className="lib-btn added" disabled>✓ In Library</button>
+                  <button className="lib-btn remove" onClick={removeFromLibrary}>✕ Remove</button>
+                </>
+            }
+          </div>
         </div>
       </div>
 
@@ -203,12 +217,20 @@ function LibraryView({ onSelectManga }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  const load = () => {
     setLoading(true);
     gql(`query { mangas(condition: { inLibrary: true }) { nodes { id title thumbnailUrl } } }`)
       .then(d => { setManga(d?.mangas?.nodes || []); setLoading(false); })
       .catch(e => { setError(e.message); setLoading(false); });
-  }, []);
+  };
+
+  useEffect(() => { load(); }, []);
+
+  const removeFromLib = async (e, id) => {
+    e.stopPropagation();
+    await gql(REMOVE_FROM_LIB, { id }).catch(() => {});
+    setManga(prev => prev.filter(m => m.id !== id));
+  };
 
   if (loading) return <Spinner />;
   if (error) return <div className="error-banner">Could not load library: {error}</div>;
@@ -224,7 +246,16 @@ function LibraryView({ onSelectManga }) {
         </div>
       ) : (
         <div className="results-grid">
-          {manga.map(m => <MangaCard key={m.id} manga={m} onClick={onSelectManga} />)}
+          {manga.map(m => (
+            <div key={m.id} style={{position:"relative"}}>
+              <MangaCard manga={m} onClick={onSelectManga} />
+              <button
+                className="lib-remove-card"
+                onClick={(e) => removeFromLib(e, m.id)}
+                title="Remove from library"
+              >✕</button>
+            </div>
+          ))}
         </div>
       )}
     </>
@@ -242,6 +273,12 @@ export default function App() {
   const [readerChapter, setReaderChapter] = useState(null);
   const [chapterList, setChapterList] = useState([]);
   const [view, setView] = useState("search");
+  const [theme, setTheme] = useState(() => localStorage.getItem("manki-theme") || "mauve");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("manki-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     rest("/api/v1/source/list").then(list => {
@@ -309,6 +346,19 @@ export default function App() {
           </nav>
 
           <div className="sidebar-footer">
+            <div className="source-label" style={{marginBottom:"6px"}}>Theme</div>
+            <div style={{display:"flex",gap:"6px",marginBottom:"1rem"}}>
+              <button
+                className={`theme-btn ${theme==="mauve"?"active":""}`}
+                onClick={() => setTheme("mauve")}
+                title="Mocha Mauve"
+              ><span className="theme-dot mauve-dot"/>Mauve</button>
+              <button
+                className={`theme-btn ${theme==="blue"?"active":""}`}
+                onClick={() => setTheme("blue")}
+                title="Mocha Blue"
+              ><span className="theme-dot blue-dot"/>Blue</button>
+            </div>
             <div className="source-label">Source</div>
             <select className="source-select" value={selectedSource} onChange={e => setSelectedSource(e.target.value)}>
               {sources.length === 0 && <option value="">No sources — install extensions</option>}

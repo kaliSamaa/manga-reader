@@ -461,3 +461,72 @@ body {
   font-size: 0.875rem;
   margin-bottom: 1rem;
 }
+
+/* ── Blue theme ──────────────────────────────── */
+[data-theme="blue"] {
+  --mauve:   #89b4fa;
+  --lavender:#b4befe;
+}
+[data-theme="blue"] .logo-mark {
+  background: linear-gradient(135deg, #89b4fa, #74c7ec);
+}
+[data-theme="blue"] .read-btn { background: #89b4fa; }
+[data-theme="blue"] .search-btn { background: #89b4fa; }
+[data-theme="blue"] .search-btn:hover { background: #74c7ec; }
+[data-theme="blue"] .lib-btn { background: #89b4fa; }
+[data-theme="blue"] .lib-btn:hover { background: #74c7ec; }
+[data-theme="blue"] .chapter-btn.read { background: #89b4fa; }
+[data-theme="blue"] .chapter-btn.read:hover { background: #74c7ec; }
+[data-theme="blue"] .mode-btn.active { background: #89b4fa; border-color: #89b4fa; }
+[data-theme="blue"] .badge-mauve { background: color-mix(in srgb,#89b4fa 20%,transparent); color:#89b4fa; border-color: color-mix(in srgb,#89b4fa 35%,transparent); }
+[data-theme="blue"] .nav-item.active { color: #89b4fa; }
+[data-theme="blue"] .source-select:focus { border-color: #89b4fa; }
+[data-theme="blue"] .search-input:focus { border-color: #89b4fa; }
+[data-theme="blue"] .spinner { border-top-color: #89b4fa; }
+
+/* ── Theme switcher ──────────────────────────── */
+.theme-btn {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  background: var(--surface0);
+  border: 1px solid var(--surface1);
+  color: var(--subtext0);
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.75rem; font-weight: 600;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer; transition: all 0.15s;
+}
+.theme-btn:hover { color: var(--text); border-color: var(--mauve); }
+.theme-btn.active { border-color: var(--mauve); color: var(--mauve); background: color-mix(in srgb, var(--mauve) 12%, transparent); }
+.theme-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.mauve-dot { background: #cba6f7; }
+.blue-dot  { background: #89b4fa; }
+
+/* ── Library remove card button ──────────────── */
+.lib-remove-card {
+  position: absolute;
+  top: 6px; right: 6px;
+  background: color-mix(in srgb, var(--crust) 80%, transparent);
+  border: 1px solid var(--surface1);
+  color: var(--subtext0);
+  font-size: 0.7rem; font-weight: 700;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  line-height: 1;
+  padding: 0;
+}
+.lib-remove-card:hover { color: var(--red); border-color: var(--red); }
+div:hover > .lib-remove-card { opacity: 1; }
+
+/* ── Remove from library button (detail page) ── */
+.lib-btn.remove {
+  background: transparent;
+  border: 1px solid var(--surface1);
+  color: var(--subtext0);
+}
+.lib-btn.remove:hover { border-color: var(--red); color: var(--red); background: color-mix(in srgb, var(--red) 10%, transparent); }
