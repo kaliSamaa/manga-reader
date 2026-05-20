@@ -197,6 +197,40 @@ function MangaDetail({ manga, onBack, onReadChapter }) {
   );
 }
 
+
+function LibraryView({ onSelectManga }) {
+  const [manga, setManga] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    gql(`query { mangas(condition: { inLibrary: true }) { nodes { id title thumbnailUrl } } }`)
+      .then(d => { setManga(d?.mangas?.nodes || []); setLoading(false); })
+      .catch(e => { setError(e.message); setLoading(false); });
+  }, []);
+
+  if (loading) return <Spinner />;
+  if (error) return <div className="error-banner">Could not load library: {error}</div>;
+
+  return (
+    <>
+      <div className="section-title">{manga.length} titles in library</div>
+      {manga.length === 0 ? (
+        <div className="welcome">
+          <div className="welcome-icon">◫</div>
+          <h2>Your library is empty</h2>
+          <p>Search for manga and click "+ Add to Library" to save titles here.</p>
+        </div>
+      ) : (
+        <div className="results-grid">
+          {manga.map(m => <MangaCard key={m.id} manga={m} onClick={onSelectManga} />)}
+        </div>
+      )}
+    </>
+  );
+}
+
 export default function App() {
   const [sources, setSources] = useState([]);
   const [selectedSource, setSelectedSource] = useState("");
@@ -269,7 +303,7 @@ export default function App() {
             <button className={`nav-item ${view==="search"?"active":""}`} onClick={() => { setView("search"); setSelectedManga(null); }}>
               <span className="nav-icon">⌕</span> Search
             </button>
-            <button className={`nav-item ${view==="library"?"active":""}`} onClick={() => setView("library")}>
+            <button className={`nav-item ${view==="library"?"active":""}`} onClick={() => { setView("library"); setSelectedManga(null); }}>
               <span className="nav-icon">◫</span> Library
             </button>
           </nav>
@@ -288,6 +322,8 @@ export default function App() {
         <main className="main">
           {selectedManga ? (
             <MangaDetail manga={selectedManga} onBack={() => setSelectedManga(null)} onReadChapter={openReader} />
+          ) : view === "library" ? (
+            <LibraryView onSelectManga={setSelectedManga} />
           ) : (
             <>
               <div className="topbar">
