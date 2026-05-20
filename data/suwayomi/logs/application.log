@@ -89,3 +89,388 @@
 2026-05-20 02:33:56.222 [DefaultDispatcher-worker-4] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager downloadVersion(version= r3147, flavor= WebUI) - Extracting WebUI zip...
 2026-05-20 02:33:56.306 [DefaultDispatcher-worker-4] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager downloadVersion(version= r3147, flavor= WebUI) - Extracting WebUI zip Done.
 2026-05-20 02:33:56.347 [DefaultDispatcher-worker-4] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager - Serving SPA files for WEBUI
+2026-05-20 02:42:44.238 [main] INFO  suwayomi.tachidesk.server.ServerSetup - Running Suwayomi-Server v2.2.2100
+2026-05-20 02:42:44.417 [main] INFO  suwayomi.tachidesk.server.util.AppMutex - Mutex status is clear, Resuming startup.
+2026-05-20 02:42:44.471 [main] INFO  com.zaxxer.hikari.HikariDataSource - Suwayomi-DB-Pool - Starting...
+2026-05-20 02:42:44.595 [main] INFO  com.zaxxer.hikari.pool.HikariPool - Suwayomi-DB-Pool - Added connection conn0: url=jdbc:h2:/home/suwayomi/.local/share/Tachidesk/database user=
+2026-05-20 02:42:44.596 [main] INFO  com.zaxxer.hikari.HikariDataSource - Suwayomi-DB-Pool - Start completed.
+2026-05-20 02:42:44.627 [main] INFO  suwayomi.tachidesk.server.database.DBManager - Using H2 database version 1.4
+2026-05-20 02:42:44.738 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migrations on database jdbc:h2:/home/suwayomi/.local/share/Tachidesk/database
+2026-05-20 02:42:44.845 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Database version before migrations: 54
+2026-05-20 02:42:44.846 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Migrations finished successfully
+2026-05-20 02:42:44.914 [main] INFO  Migration - Running migrations, previous version 2, target version 2
+2026-05-20 02:42:44.915 [main] INFO  Migration - Skipping migration version 1: InitialMigration
+2026-05-20 02:42:44.915 [main] INFO  Migration - Skipping migration version 2: FixGlobalUpdateScheduling
+2026-05-20 02:42:44.922 [DefaultDispatcher-worker-1] INFO  suwayomi.tachidesk.server.ServerSetup - Socks Proxy changed - enabled=false address=: , username=[REDACTED], password=[REDACTED]
+2026-05-20 02:42:45.219 [DefaultDispatcher-worker-4] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager setupWebUI(flavor= WebUI, servedFlavor= WebUI) - found webUI files - version= r3147
+2026-05-20 02:42:45.301 [DefaultDispatcher-worker-4] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager - Serving SPA files for WEBUI
+2026-05-20 02:42:45.302 [DefaultDispatcher-worker-4] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager isLocalWebUIValid(flavor= WebUI, path= /home/suwayomi/.local/share/Tachidesk/webUI) - Verifying WebUI files...
+2026-05-20 02:42:46.498 [DefaultDispatcher-worker-5] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager isLocalWebUIValid(flavor= WebUI, path= /home/suwayomi/.local/share/Tachidesk/webUI) - Validation succeeded - md5: local= d3e4502790534bcf5da79a40e15561c4; expected= d3e4502790534bcf5da79a40e15561c4
+2026-05-20 02:42:47.063 [main] INFO  io.javalin.Javalin - Starting Javalin ...
+2026-05-20 02:42:47.104 [main] INFO  io.javalin.Javalin - 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2026-05-20 02:42:47.104 [main] INFO  io.javalin.Javalin - Javalin started in 82ms \o/
+2026-05-20 02:42:47.110 [main] INFO  io.javalin.Javalin - Static file handler added: StaticFileConfig(hostedPath=/, directory=/tmp/Tachidesk/webUI-serve, location=EXTERNAL, precompress=false, aliasCheck=org.eclipse.jetty.server.handler.ContextHandler$ApproveAliases@34d72f06, headers={Cache-Control=max-age=0}, mimeTypes={}, roles=[]). File system location: '/tmp/Tachidesk/webUI-serve'
+2026-05-20 02:42:47.113 [main] INFO  io.javalin.Javalin - Listening on http://0.0.0.0:4567/
+2026-05-20 02:42:47.122 [main] INFO  io.javalin.Javalin - You are running Javalin 6.7.0 (released June 22, 2025. Your Javalin version is 331 days old. Consider checking for a newer version.).
+2026-05-20 02:49:17.822 [main] INFO  suwayomi.tachidesk.server.ServerSetup - Running Suwayomi-Server v2.2.2100
+2026-05-20 02:49:17.828 [main] DEBUG suwayomi.tachidesk.server.ServerSetup - Loaded config:
+{
+    "android" : {
+        "app" : {
+            "debug" : true,
+            "packageName" : "eu.kanade.tachiyomi"
+        },
+        "files" : {
+            "cacheDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat/appdata/cache",
+            "codeCacheDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat/appdata/code_cache",
+            "dataDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat/appdata/data",
+            "databasesDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat/appdata/databases",
+            "downloadCacheDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat/extappdata/downloadCache",
+            "externalCacheDirs" : [
+                "/home/suwayomi/.local/share/Tachidesk/android-compat/extappdata/cache"
+            ],
+            "externalFilesDirs" : [
+                "/home/suwayomi/.local/share/Tachidesk/android-compat/extappdata/files"
+            ],
+            "externalMediaDirs" : [
+                "/home/suwayomi/.local/share/Tachidesk/android-compat/extappdata/media"
+            ],
+            "externalStorageDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat/extappdata",
+            "filesDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat/appdata/files",
+            "noBackupFilesDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat/appdata/no_backup",
+            "obbDirs" : [
+                "/home/suwayomi/.local/share/Tachidesk/android-compat/extappdata/obb"
+            ],
+            "packageDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat/android-compat/packages",
+            "prefsDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat/appdata/shared_prefs",
+            "rootDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat/appdata"
+        },
+        "system" : {
+            "isDebuggable" : true
+        }
+    },
+    "androidcompat" : {
+        "rootDir" : "/home/suwayomi/.local/share/Tachidesk/android-compat"
+    },
+    "server" : {
+        "authMode" : "NONE",
+        "authPassword" : "[REDACTED]",
+        "authUsername" : "[REDACTED]",
+        "autoBackupIncludeCategories" : true,
+        "autoBackupIncludeChapters" : true,
+        "autoBackupIncludeClientData" : true,
+        "autoBackupIncludeHistory" : true,
+        "autoBackupIncludeManga" : true,
+        "autoBackupIncludeServerSettings" : true,
+        "autoBackupIncludeTracking" : true,
+        "autoDownloadIgnoreReUploads" : false,
+        "autoDownloadNewChapters" : false,
+        "autoDownloadNewChaptersLimit" : 0,
+        "backupInterval" : 1,
+        "backupPath" : "",
+        "backupTTL" : 14,
+        "backupTime" : "00:00",
+        "databasePassword" : "[REDACTED]",
+        "databaseType" : "H2",
+        "databaseUrl" : "postgresql://localhost:5432/suwayomi",
+        "databaseUsername" : "[REDACTED]",
+        "debugLogsEnabled" : false,
+        "downloadAsCbz" : false,
+        "downloadsPath" : "",
+        "electronPath" : "",
+        "excludeCompleted" : true,
+        "excludeEntryWithUnreadChapters" : true,
+        "excludeNotStarted" : true,
+        "excludeUnreadChapters" : true,
+        "extensionRepos" : "[REDACTED]",
+        "flareSolverrAsResponseFallback" : false,
+        "flareSolverrEnabled" : true,
+        "flareSolverrSessionName" : "suwayomi",
+        "flareSolverrSessionTtl" : 15,
+        "flareSolverrTimeout" : 60,
+        "flareSolverrUrl" : "http://flaresolverr:8191",
+        "globalUpdateInterval" : 12,
+        "initialOpenInBrowserEnabled" : false,
+        "ip" : "0.0.0.0",
+        "jwtAudience" : "suwayomi-server-api",
+        "jwtRefreshExpiry" : "60d",
+        "jwtTokenExpiry" : "5m",
+        "koreaderSyncChecksumMethod" : "BINARY",
+        "koreaderSyncPercentageTolerance" : 1.0E-15,
+        "koreaderSyncStrategyBackward" : "DISABLED",
+        "koreaderSyncStrategyForward" : "PROMPT",
+        "localSourcePath" : "",
+        "maxLogFileSize" : "10mb",
+        "maxLogFiles" : 31,
+        "maxLogFolderSize" : "100mb",
+        "maxSourcesInParallel" : 6,
+        "opdsCbzMimetype" : "MODERN",
+        "opdsChapterSortOrder" : "DESC",
+        "opdsEnablePageReadProgress" : true,
+        "opdsItemsPerPage" : 100,
+        "opdsMarkAsReadOnDownload" : false,
+        "opdsShowOnlyDownloadedChapters" : false,
+        "opdsShowOnlyUnreadChapters" : false,
+        "opdsUseBinaryFileSizes" : false,
+        "port" : 4567,
+        "socksProxyEnabled" : false,
+        "socksProxyHost" : "",
+        "socksProxyPassword" : "[REDACTED]",
+        "socksProxyPort" : "",
+        "socksProxyUsername" : "[REDACTED]",
+        "socksProxyVersion" : 5,
+        "systemTrayEnabled" : false,
+        "updateMangas" : false,
+        "useHikariConnectionPool" : true,
+        "webUIChannel" : "STABLE",
+        "webUIEnabled" : true,
+        "webUIFlavor" : "WEBUI",
+        "webUIInterface" : "BROWSER",
+        "webUISubpath" : "",
+        "webUIUpdateCheckInterval" : 23
+    }
+}
+
+2026-05-20 02:49:17.829 [main] DEBUG suwayomi.tachidesk.server.ServerSetup - Data Root directory is set to: /home/suwayomi/.local/share/Tachidesk
+2026-05-20 02:49:18.025 [main] INFO  suwayomi.tachidesk.server.util.AppMutex - Mutex status is clear, Resuming startup.
+2026-05-20 02:49:18.086 [main] INFO  com.zaxxer.hikari.HikariDataSource - Suwayomi-DB-Pool - Starting...
+2026-05-20 02:49:18.205 [main] INFO  com.zaxxer.hikari.pool.HikariPool - Suwayomi-DB-Pool - Added connection conn0: url=jdbc:h2:/home/suwayomi/.local/share/Tachidesk/database user=
+2026-05-20 02:49:18.206 [main] INFO  com.zaxxer.hikari.HikariDataSource - Suwayomi-DB-Pool - Start completed.
+2026-05-20 02:49:18.238 [main] INFO  suwayomi.tachidesk.server.database.DBManager - Using H2 database version 1.4
+2026-05-20 02:49:18.340 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Running migrations on database jdbc:h2:/home/suwayomi/.local/share/Tachidesk/database
+2026-05-20 02:49:18.438 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Database version before migrations: 54
+2026-05-20 02:49:18.438 [main] INFO  de.neonew.exposed.migrations.RunMigrations - Migrations finished successfully
+2026-05-20 02:49:18.503 [main] INFO  Migration - Running migrations, previous version 2, target version 2
+2026-05-20 02:49:18.504 [main] INFO  Migration - Skipping migration version 1: InitialMigration
+2026-05-20 02:49:18.504 [main] INFO  Migration - Skipping migration version 2: FixGlobalUpdateScheduling
+2026-05-20 02:49:18.511 [DefaultDispatcher-worker-5] INFO  suwayomi.tachidesk.server.ServerSetup - Socks Proxy changed - enabled=false address=: , username=[REDACTED], password=[REDACTED]
+2026-05-20 02:49:18.853 [DefaultDispatcher-worker-2] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager setupWebUI(flavor= WebUI, servedFlavor= WebUI) - found webUI files - version= r3147
+2026-05-20 02:49:19.102 [DefaultDispatcher-worker-2] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager - Serving SPA files for WEBUI
+2026-05-20 02:49:19.103 [DefaultDispatcher-worker-2] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager isLocalWebUIValid(flavor= WebUI, path= /home/suwayomi/.local/share/Tachidesk/webUI) - Verifying WebUI files...
+2026-05-20 02:49:20.215 [DefaultDispatcher-worker-3] INFO  suwayomi.tachidesk.server.util.WebInterfaceManager isLocalWebUIValid(flavor= WebUI, path= /home/suwayomi/.local/share/Tachidesk/webUI) - Validation succeeded - md5: local= d3e4502790534bcf5da79a40e15561c4; expected= d3e4502790534bcf5da79a40e15561c4
+2026-05-20 02:49:20.827 [main] INFO  io.javalin.Javalin - Starting Javalin ...
+2026-05-20 02:49:20.866 [main] INFO  io.javalin.Javalin - 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2026-05-20 02:49:20.867 [main] INFO  io.javalin.Javalin - Javalin started in 76ms \o/
+2026-05-20 02:49:20.872 [main] INFO  io.javalin.Javalin - Static file handler added: StaticFileConfig(hostedPath=/, directory=/tmp/Tachidesk/webUI-serve, location=EXTERNAL, precompress=false, aliasCheck=org.eclipse.jetty.server.handler.ContextHandler$ApproveAliases@293ecff6, headers={Cache-Control=max-age=0}, mimeTypes={}, roles=[]). File system location: '/tmp/Tachidesk/webUI-serve'
+2026-05-20 02:49:20.875 [main] INFO  io.javalin.Javalin - Listening on http://0.0.0.0:4567/
+2026-05-20 02:49:20.880 [main] INFO  io.javalin.Javalin - You are running Javalin 6.7.0 (released June 22, 2025. Your Javalin version is 331 days old. Consider checking for a newer version.).
+2026-05-20 02:53:35.921 [DefaultDispatcher-worker-3] ERROR suwayomi.tachidesk.graphql.AsDataFetcherResult - asDataFetcherResult: failed due to
+java.lang.Exception: No chapters found
+	at suwayomi.tachidesk.manga.impl.Chapter.fetchChapterList(Chapter.kt:164)
+	at suwayomi.tachidesk.graphql.mutations.ChapterMutation$fetchChapters$1.invokeSuspend(ChapterMutation.kt:174)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+2026-05-20 03:07:46.509 [DefaultDispatcher-worker-3] WARN  io.javalin.Javalin - Uncaught exception
+java.lang.Exception: No chapters found
+	at suwayomi.tachidesk.manga.impl.Chapter.fetchChapterList(Chapter.kt:164)
+	at suwayomi.tachidesk.manga.impl.Chapter.getSourceChapters(Chapter.kt:93)
+	at suwayomi.tachidesk.manga.impl.Chapter.getChapterList(Chapter.kt:79)
+	at suwayomi.tachidesk.manga.controller.MangaController$chapterList$2$1$1.invokeSuspend(MangaController.kt:271)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+2026-05-20 03:08:41.413 [DefaultDispatcher-worker-1] WARN  io.javalin.Javalin - Uncaught exception
+java.lang.Exception: No chapters found
+	at suwayomi.tachidesk.manga.impl.Chapter.fetchChapterList(Chapter.kt:164)
+	at suwayomi.tachidesk.manga.impl.Chapter.getSourceChapters(Chapter.kt:93)
+	at suwayomi.tachidesk.manga.impl.Chapter.getChapterList(Chapter.kt:79)
+	at suwayomi.tachidesk.manga.controller.MangaController$chapterList$2$1$1.invokeSuspend(MangaController.kt:271)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+2026-05-20 03:08:53.731 [DefaultDispatcher-worker-8] WARN  io.javalin.Javalin - Uncaught exception
+java.lang.Exception: No chapters found
+	at suwayomi.tachidesk.manga.impl.Chapter.fetchChapterList(Chapter.kt:164)
+	at suwayomi.tachidesk.manga.impl.Chapter.getSourceChapters(Chapter.kt:93)
+	at suwayomi.tachidesk.manga.impl.Chapter.getChapterList(Chapter.kt:79)
+	at suwayomi.tachidesk.manga.controller.MangaController$chapterList$2$1$1.invokeSuspend(MangaController.kt:271)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+2026-05-20 03:25:32.197 [DefaultDispatcher-worker-4] ERROR suwayomi.tachidesk.server.JavalinSetup - NoSuchElementException while handling the request
+java.util.NoSuchElementException: Collection is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:209)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$lambda$2(Page.kt:97)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$run(ThreadLocalTransactionManager.kt:355)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$lambda$11(ThreadLocalTransactionManager.kt:402)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction(ThreadLocalTransactionManager.kt:401)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$lambda$5(ThreadLocalTransactionManager.kt:310)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:259)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:237)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$default(ThreadLocalTransactionManager.kt:236)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage(Page.kt:90)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$default(Page.kt:57)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImageServe(Page.kt:149)
+	at suwayomi.tachidesk.manga.controller.MangaController$pageRetrieve$2$1$1.invokeSuspend(MangaController.kt:478)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+2026-05-20 03:25:34.872 [DefaultDispatcher-worker-7] ERROR suwayomi.tachidesk.server.JavalinSetup - NoSuchElementException while handling the request
+java.util.NoSuchElementException: Collection is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:209)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$lambda$2(Page.kt:97)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$run(ThreadLocalTransactionManager.kt:355)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$lambda$11(ThreadLocalTransactionManager.kt:402)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction(ThreadLocalTransactionManager.kt:401)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$lambda$5(ThreadLocalTransactionManager.kt:310)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:259)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:237)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$default(ThreadLocalTransactionManager.kt:236)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage(Page.kt:90)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$default(Page.kt:57)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImageServe(Page.kt:149)
+	at suwayomi.tachidesk.manga.controller.MangaController$pageRetrieve$2$1$1.invokeSuspend(MangaController.kt:478)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+2026-05-20 03:25:38.916 [DefaultDispatcher-worker-6] ERROR suwayomi.tachidesk.server.JavalinSetup - NoSuchElementException while handling the request
+java.util.NoSuchElementException: Collection is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:209)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$lambda$2(Page.kt:97)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$run(ThreadLocalTransactionManager.kt:355)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$lambda$11(ThreadLocalTransactionManager.kt:402)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction(ThreadLocalTransactionManager.kt:401)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$lambda$5(ThreadLocalTransactionManager.kt:310)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:259)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:237)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$default(ThreadLocalTransactionManager.kt:236)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage(Page.kt:90)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$default(Page.kt:57)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImageServe(Page.kt:149)
+	at suwayomi.tachidesk.manga.controller.MangaController$pageRetrieve$2$1$1.invokeSuspend(MangaController.kt:478)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+2026-05-20 03:25:41.970 [DefaultDispatcher-worker-7] ERROR suwayomi.tachidesk.server.JavalinSetup - NoSuchElementException while handling the request
+java.util.NoSuchElementException: Collection is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:209)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$lambda$2(Page.kt:97)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$run(ThreadLocalTransactionManager.kt:355)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$lambda$11(ThreadLocalTransactionManager.kt:402)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction(ThreadLocalTransactionManager.kt:401)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$lambda$5(ThreadLocalTransactionManager.kt:310)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:259)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:237)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$default(ThreadLocalTransactionManager.kt:236)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage(Page.kt:90)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$default(Page.kt:57)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImageServe(Page.kt:149)
+	at suwayomi.tachidesk.manga.controller.MangaController$pageRetrieve$2$1$1.invokeSuspend(MangaController.kt:478)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+2026-05-20 03:25:42.464 [DefaultDispatcher-worker-8] ERROR suwayomi.tachidesk.server.JavalinSetup - NoSuchElementException while handling the request
+java.util.NoSuchElementException: Collection is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:209)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$lambda$2(Page.kt:97)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$run(ThreadLocalTransactionManager.kt:355)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$lambda$11(ThreadLocalTransactionManager.kt:402)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction(ThreadLocalTransactionManager.kt:401)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$lambda$5(ThreadLocalTransactionManager.kt:310)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:259)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:237)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$default(ThreadLocalTransactionManager.kt:236)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage(Page.kt:90)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$default(Page.kt:57)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImageServe(Page.kt:149)
+	at suwayomi.tachidesk.manga.controller.MangaController$pageRetrieve$2$1$1.invokeSuspend(MangaController.kt:478)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+2026-05-20 03:25:56.906 [DefaultDispatcher-worker-1] ERROR suwayomi.tachidesk.server.JavalinSetup - NoSuchElementException while handling the request
+java.util.NoSuchElementException: Collection is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:209)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$lambda$2(Page.kt:97)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$run(ThreadLocalTransactionManager.kt:355)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction$lambda$11(ThreadLocalTransactionManager.kt:402)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.inTopLevelTransaction(ThreadLocalTransactionManager.kt:401)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$lambda$5(ThreadLocalTransactionManager.kt:310)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.keepAndRestoreTransactionRefAfterRun(ThreadLocalTransactionManager.kt:410)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:259)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction(ThreadLocalTransactionManager.kt:237)
+	at org.jetbrains.exposed.sql.transactions.ThreadLocalTransactionManagerKt.transaction$default(ThreadLocalTransactionManager.kt:236)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage(Page.kt:90)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImage$default(Page.kt:57)
+	at suwayomi.tachidesk.manga.impl.Page.getPageImageServe(Page.kt:149)
+	at suwayomi.tachidesk.manga.controller.MangaController$pageRetrieve$2$1$1.invokeSuspend(MangaController.kt:478)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)

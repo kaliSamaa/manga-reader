@@ -6,10 +6,13 @@ services:
     volumes:
       - ./data/downloads:/home/suwayomi/.local/share/Tachidesk/downloads
       - ./data/suwayomi:/home/suwayomi/.local/share/Tachidesk
+    ports:
+      - "4567:4567"
     environment:
       - TZ=Asia/Jerusalem
       - FLARESOLVERR_ENABLED=true
       - FLARESOLVERR_URL=http://flaresolverr:8191
+      - EXTENSION_REPOS=["https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"]
     restart: on-failure:3
     networks:
       - manga-net

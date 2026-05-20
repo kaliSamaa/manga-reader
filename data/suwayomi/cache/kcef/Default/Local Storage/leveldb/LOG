@@ -1,2 +1,3 @@
-2026/05/20-02:33:53.808 d7 Creating DB /home/suwayomi/.local/share/Tachidesk/cache/kcef/Default/Local Storage/leveldb since it was missing.
-2026/05/20-02:33:53.842 d7 Reusing MANIFEST /home/suwayomi/.local/share/Tachidesk/cache/kcef/Default/Local Storage/leveldb/MANIFEST-000001
+2026/05/20-02:49:19.129 d1 Reusing MANIFEST /home/suwayomi/.local/share/Tachidesk/cache/kcef/Default/Local Storage/leveldb/MANIFEST-000001
+2026/05/20-02:49:19.135 d1 Recovering log #3
+2026/05/20-02:49:19.138 d1 Reusing old log /home/suwayomi/.local/share/Tachidesk/cache/kcef/Default/Local Storage/leveldb/000003.log 

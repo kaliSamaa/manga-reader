@@ -1,2 +1,3 @@
-2026/05/20-02:33:53.803 b1 Creating DB /home/suwayomi/.local/share/Tachidesk/cache/kcef/Default/Sync Data/LevelDB since it was missing.
-2026/05/20-02:33:53.833 b1 Reusing MANIFEST /home/suwayomi/.local/share/Tachidesk/cache/kcef/Default/Sync Data/LevelDB/MANIFEST-000001
+2026/05/20-02:49:19.114 b0 Reusing MANIFEST /home/suwayomi/.local/share/Tachidesk/cache/kcef/Default/Sync Data/LevelDB/MANIFEST-000001
+2026/05/20-02:49:19.118 b0 Recovering log #3
+2026/05/20-02:49:19.121 b0 Reusing old log /home/suwayomi/.local/share/Tachidesk/cache/kcef/Default/Sync Data/LevelDB/000003.log 
