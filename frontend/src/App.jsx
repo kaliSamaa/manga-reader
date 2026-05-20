@@ -78,8 +78,8 @@ function ReaderView({ chapter, mangaId, onClose, onPrev, onNext, hasPrev, hasNex
         <button className="icon-btn" onClick={onClose}>← Close</button>
         <div className="chapter-label">{chapter.name}</div>
         <div className="reader-controls">
-          <button className={`mode-btn ${mode==="scroll"?"active":""}`} onClick={() => setMode("scroll")}>Scroll</button>
-          <button className={`mode-btn ${mode==="page"?"active":""}`} onClick={() => setMode("page")}>Page</button>
+          <button className={`mode-btn ${mode === "scroll" ? "active" : ""}`} onClick={() => setMode("scroll")}>Scroll</button>
+          <button className={`mode-btn ${mode === "page" ? "active" : ""}`} onClick={() => setMode("page")}>Page</button>
         </div>
         <button className="icon-btn" onClick={onPrev} disabled={!hasPrev}>← Prev</button>
         <button className="icon-btn" onClick={onNext} disabled={!hasNext}>Next →</button>
@@ -89,14 +89,14 @@ function ReaderView({ chapter, mangaId, onClose, onPrev, onNext, hasPrev, hasNex
         {loading && <Spinner />}
         {error && <div className="error-banner">Failed to load pages: {error}</div>}
         {!loading && !error && mode === "scroll" && pages.map((i) => (
-          <img key={i} src={pageUrl(i)} alt={`Page ${i+1}`} className="reader-page" loading="lazy" />
+          <img key={i} src={pageUrl(i)} alt={`Page ${i + 1}`} className="reader-page" loading="lazy" />
         ))}
         {!loading && !error && mode === "page" && (
           <div className="paged-reader">
-            <button className="page-nav left" onClick={() => setCur(c => Math.max(0, c-1))} disabled={cur===0}>‹</button>
-            {pageCount > 0 && <img key={cur} src={pageUrl(cur)} alt={`Page ${cur+1}`} className="reader-page paged" />}
-            <button className="page-nav right" onClick={() => setCur(c => Math.min(pages.length-1, c+1))} disabled={cur===pageCount-1}>›</button>
-            <div className="page-counter">{cur+1} / {pageCount}</div>
+            <button className="page-nav left" onClick={() => setCur(c => Math.max(0, c - 1))} disabled={cur === 0}>‹</button>
+            {pageCount > 0 && <img key={cur} src={pageUrl(cur)} alt={`Page ${cur + 1}`} className="reader-page paged" />}
+            <button className="page-nav right" onClick={() => setCur(c => Math.min(pages.length - 1, c + 1))} disabled={cur === pageCount - 1}>›</button>
+            <div className="page-counter">{cur + 1} / {pageCount}</div>
           </div>
         )}
       </div>
@@ -126,17 +126,17 @@ function MangaDetail({ manga, onBack, onReadChapter }) {
 
   const addToLibrary = async () => {
     try { await gql(ADD_TO_LIB, { id: manga.id }); setInLib(true); }
-    catch { await fetch(`${BASE}/api/v1/manga/${manga.id}/`, { method:"PATCH", headers:{"Content-Type":"application/json"}, body: JSON.stringify({inLibrary:true}) }); setInLib(true); }
+    catch { await fetch(`${BASE}/api/v1/manga/${manga.id}/`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ inLibrary: true }) }); setInLib(true); }
   };
   const removeFromLibrary = async () => {
     try { await gql(REMOVE_FROM_LIB, { id: manga.id }); setInLib(false); }
-    catch {}
+    catch { }
   };
 
   const downloadChapter = async (ch) => {
     setDownloading(d => ({ ...d, [ch.id]: true }));
     try { await fetch(`${BASE}/api/v1/download/${ch.id}`, { method: "GET" }); }
-    catch {}
+    catch { }
     setDownloading(d => ({ ...d, [ch.id]: false }));
   };
 
@@ -150,7 +150,7 @@ function MangaDetail({ manga, onBack, onReadChapter }) {
     </div>
   );
 
-  const chapters = (full?.chapters || []).slice().sort((a,b) => a.chapterNumber - b.chapterNumber);
+  const chapters = (full?.chapters || []).slice().sort((a, b) => a.chapterNumber - b.chapterNumber);
 
   return (
     <div className="detail-view">
@@ -166,16 +166,16 @@ function MangaDetail({ manga, onBack, onReadChapter }) {
           <div className="badges">
             {full.status && <span className="badge badge-mauve">{full.status}</span>}
             {chapters.length > 0 && <span className="badge badge-peach">{chapters.length} chapters</span>}
-            {full.genre?.slice(0,3).map(g => <span key={g} className="badge badge-green">{g}</span>)}
+            {full.genre?.slice(0, 3).map(g => <span key={g} className="badge badge-green">{g}</span>)}
           </div>
           <p className="detail-desc">{full.description?.slice(0, 400)}{full.description?.length > 400 ? "…" : ""}</p>
-          <div style={{display:"flex",gap:"8px",flexWrap:"wrap"}}>
+          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
             {!inLib
               ? <button className="lib-btn" onClick={addToLibrary}>+ Add to Library</button>
               : <>
-                  <button className="lib-btn added" disabled>✓ In Library</button>
-                  <button className="lib-btn remove" onClick={removeFromLibrary}>✕ Remove</button>
-                </>
+                <button className="lib-btn added" disabled>✓ In Library</button>
+                <button className="lib-btn remove" onClick={removeFromLibrary}>✕ Remove</button>
+              </>
             }
           </div>
         </div>
@@ -203,7 +203,7 @@ function MangaDetail({ manga, onBack, onReadChapter }) {
             </div>
           ))}
           {chapters.length === 0 && (
-            <div className="chapter-row"><div className="chapter-name" style={{color:"var(--overlay0)"}}>No chapters found — try refreshing in Suwayomi's UI</div></div>
+            <div className="chapter-row"><div className="chapter-name" style={{ color: "var(--overlay0)" }}>No chapters found — try refreshing in Suwayomi's UI</div></div>
           )}
         </div>
       </div>
@@ -228,7 +228,7 @@ function LibraryView({ onSelectManga }) {
 
   const removeFromLib = async (e, id) => {
     e.stopPropagation();
-    await gql(REMOVE_FROM_LIB, { id }).catch(() => {});
+    await gql(REMOVE_FROM_LIB, { id }).catch(() => { });
     setManga(prev => prev.filter(m => m.id !== id));
   };
 
@@ -247,7 +247,7 @@ function LibraryView({ onSelectManga }) {
       ) : (
         <div className="results-grid">
           {manga.map(m => (
-            <div key={m.id} style={{position:"relative"}}>
+            <div key={m.id} style={{ position: "relative" }}>
               <MangaCard manga={m} onClick={onSelectManga} />
               <button
                 className="lib-remove-card"
@@ -286,7 +286,7 @@ export default function App() {
       const srcs = (list || []).filter(s => s.id !== "0");
       setSources(srcs);
       if (srcs.length > 0) setSelectedSource(srcs[0].id);
-    }).catch(() => {});
+    }).catch(() => { });
   }, []);
 
   const doSearch = useCallback(async () => {
@@ -326,6 +326,28 @@ export default function App() {
       )}
 
       <div className="app">
+        <div
+          className={`mobile-settings-backdrop ${view === "settings" ? "open" : ""}`}
+          onClick={() => setView("search")}
+        />
+        <div className={`mobile-settings-sheet ${view === "settings" ? "open" : ""}`}>
+          <span className="source-label">Theme</span>
+          <div className="theme-row">
+            <button className={`theme-btn ${theme === "mauve" ? "active" : ""}`} onClick={() => setTheme("mauve")}>
+              <span className="theme-dot mauve-dot" />sky
+            </button>
+            <button className={`theme-btn ${theme === "blue" ? "active" : ""}`} onClick={() => setTheme("blue")}>
+              <span className="theme-dot blue-dot" />dash
+            </button>
+          </div>
+          <span className="source-label" style={{ marginTop: "1rem", display: "block" }}>Source</span>
+          <select className="source-select" value={selectedSource} onChange={e => setSelectedSource(e.target.value)}>
+            {sources.length === 0 && <option value="">No sources — install extensions</option>}
+            {sources.map(s => (
+              <option key={s.id} value={s.id}>{s.displayName || s.name} [{s.lang}]</option>
+            ))}
+          </select>
+        </div>
         <aside className="sidebar">
           <div className="logo">
             <div className="logo-mark">M</div>
@@ -337,27 +359,30 @@ export default function App() {
 
           <nav className="sidenav">
             <div className="nav-section-label">Browse</div>
-            <button className={`nav-item ${view==="search"?"active":""}`} onClick={() => { setView("search"); setSelectedManga(null); }}>
+            <button className={`nav-item ${view === "search" ? "active" : ""}`} onClick={() => { setView("search"); setSelectedManga(null); }}>
               <span className="nav-icon">⌕</span> Search
             </button>
-            <button className={`nav-item ${view==="library"?"active":""}`} onClick={() => { setView("library"); setSelectedManga(null); }}>
+            <button className={`nav-item ${view === "library" ? "active" : ""}`} onClick={() => { setView("library"); setSelectedManga(null); }}>
               <span className="nav-icon">◫</span> Library
+            </button>
+            <button className={`nav-item ${view === "settings" ? "active" : ""}`} onClick={() => setView("settings")}>
+              <span className="nav-icon">⚙</span> Settings
             </button>
           </nav>
 
           <div className="sidebar-footer">
-            <div className="source-label" style={{marginBottom:"6px"}}>Theme</div>
-            <div style={{display:"flex",gap:"6px",marginBottom:"1rem"}}>
+            <div className="source-label" style={{ marginBottom: "6px" }}>Theme</div>
+            <div style={{ display: "flex", gap: "6px", marginBottom: "1rem" }}>
               <button
-                className={`theme-btn ${theme==="mauve"?"active":""}`}
+                className={`theme-btn ${theme === "mauve" ? "active" : ""}`}
                 onClick={() => setTheme("mauve")}
                 title="Mocha Mauve"
-              ><span className="theme-dot mauve-dot"/>sky</button>
+              ><span className="theme-dot mauve-dot" />sky</button>
               <button
-                className={`theme-btn ${theme==="blue"?"active":""}`}
+                className={`theme-btn ${theme === "blue" ? "active" : ""}`}
                 onClick={() => setTheme("blue")}
                 title="Mocha Blue"
-              ><span className="theme-dot blue-dot"/>dash</button>
+              ><span className="theme-dot blue-dot" />dash</button>
             </div>
             <div className="source-label">Source</div>
             <select className="source-select" value={selectedSource} onChange={e => setSelectedSource(e.target.value)}>
