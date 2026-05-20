@@ -1,15 +1,8 @@
-import { clearSession } from "../storage.js";
-
-export default function Sidebar({ view, setView, setSelectedManga, session, sources, selectedSource, setSelectedSource, theme, setTheme }) {
+export default function Sidebar({ view, setView, setSelectedManga, sources, selectedSource, setSelectedSource, theme, setTheme }) {
 
   function handleNav(v) {
     setView(v);
     setSelectedManga(null);
-  }
-
-  function logout() {
-    clearSession();
-    window.location.reload();
   }
 
   return (
@@ -30,31 +23,13 @@ export default function Sidebar({ view, setView, setSelectedManga, session, sour
         <button className={`nav-item ${view === "library" ? "active" : ""}`} onClick={() => handleNav("library")}>
           <i className="nav-icon fa-solid fa-book-atlas" /> Library
         </button>
-
-        {session.isAdmin && (
-          <>
-            <div className="nav-section-label">Admin</div>
-            <button className={`nav-item ${view === "users" ? "active" : ""}`} onClick={() => handleNav("users")}>
-              <i className="nav-icon fa-solid fa-user" /> Users
-            </button>
-          </>
-        )}
-
-        {/* Mobile-only settings nav item */}
         <button className={`nav-item mobile-only ${view === "settings" ? "active" : ""}`} onClick={() => setView("settings")}>
           <i className="nav-icon fa-solid fa-gear" /> Settings
         </button>
       </nav>
 
       <div className="sidebar-footer">
-        <div className="session-row">
-          <span className="session-user">
-            <i className={`fa-solid ${session.isAdmin ? "fa-user-tie" : "fa-user"}`} /> {session.username}
-          </span>
-          <button className="logout-btn" onClick={logout}>Sign out</button>
-        </div>
-
-        <div className="source-label" style={{ marginBottom: "6px", marginTop: "0.75rem" }}>Theme</div>
+        <div className="source-label" style={{ marginBottom: "6px" }}>Theme</div>
         <div style={{ display: "flex", gap: "6px", marginBottom: "1rem" }}>
           <button className={`theme-btn ${theme === "mauve" ? "active" : ""}`} onClick={() => setTheme("mauve")}>
             <span className="theme-dot mauve-dot" />sky

@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react";
-import { getSession, saveSession } from "./storage.js";
 import { fetchSources } from "./api.js";
 
-import Login from "./components/Login.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import SettingsSheet from "./components/SettingsSheet.jsx";
 import SearchView from "./components/SearchView.jsx";
 import LibraryView from "./components/LibraryView.jsx";
 import MangaDetail from "./components/MangaDetail.jsx";
 import ReaderView from "./components/ReaderView.jsx";
-import UsersView from "./components/UsersView.jsx";
 
 export default function App() {
-  const [session, setSession] = useState(() => getSession());
   const [sources, setSources] = useState([]);
   const [selectedSource, setSelectedSource] = useState("");
   const [view, setView] = useState("search");
@@ -22,27 +18,18 @@ export default function App() {
   const [chapterList, setChapterList] = useState([]);
   const [theme, setTheme] = useState(() => localStorage.getItem("manki-theme") || "mauve");
 
-  // Theme
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("manki-theme", theme);
   }, [theme]);
 
-  // Sources
   useEffect(() => {
-    if (!session) return;
     fetchSources().then(srcs => {
       setSources(srcs);
       if (srcs.length > 0) setSelectedSource(srcs[0].id);
     }).catch(() => {});
-  }, [session]);
+  }, []);
 
-  // ── Auth ──────────────────────────────────────────────────────────────────
-  if (!session) {
-    return <Login onLogin={(user) => { saveSession(user); setSession(user); }} />;
-  }
-
-  // ── Reader ─────────────────────────────────────────────────────────────────
   const openReader = (ch, chapters, mangaId) => {
     setChapterList(chapters);
     setReaderChapter(ch);
@@ -55,15 +42,6 @@ export default function App() {
   };
   const curIdx = chapterList.findIndex(c => c?.id === readerChapter?.id);
 
-  // ── Shared nav props ───────────────────────────────────────────────────────
-  const sidebarProps = {
-    view, setView,
-    setSelectedManga,
-    session,
-    sources, selectedSource, setSelectedSource,
-    theme, setTheme,
-  };
-
   return (
     <>
       {readerChapter && (
@@ -75,12 +53,10 @@ export default function App() {
           onNext={() => navChapter(1)}
           hasPrev={curIdx > 0}
           hasNext={curIdx < chapterList.length - 1}
-          username={session.username}
         />
       )}
 
       <div className="app">
-        {/* Mobile settings sheet */}
         <SettingsSheet
           open={view === "settings"}
           onClose={() => setView("search")}
@@ -91,7 +67,13 @@ export default function App() {
           setTheme={setTheme}
         />
 
-        <Sidebar {...sidebarProps} />
+        <Sidebar
+          view={view} setView={setView}
+          setSelectedManga={setSelectedManga}
+          sources={sources}
+          selectedSource={selectedSource} setSelectedSource={setSelectedSource}
+          theme={theme} setTheme={setTheme}
+        />
 
         <main className="main">
           {selectedManga ? (
@@ -99,15 +81,9 @@ export default function App() {
               manga={selectedManga}
               onBack={() => setSelectedManga(null)}
               onReadChapter={openReader}
-              username={session.username}
             />
           ) : view === "library" ? (
-            <LibraryView
-              onSelectManga={setSelectedManga}
-              username={session.username}
-            />
-          ) : view === "users" && session.isAdmin ? (
-            <UsersView session={session} />
+            <LibraryView onSelectManga={setSelectedManga} />
           ) : (
             <SearchView
               selectedSource={selectedSource}

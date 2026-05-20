@@ -8,7 +8,6 @@ function Spinner() {
 
 export default function ReaderView({
   chapter, mangaId, onClose, onPrev, onNext, hasPrev, hasNext,
-  username,
 }) {
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -18,15 +17,13 @@ export default function ReaderView({
 
   const chIdx = chapter.index ?? chapter.sourceOrder ?? 0;
 
-  // Load chapter metadata + restore last page
   useEffect(() => {
     setLoading(true); setError(null); setPageCount(0);
     fetchChapterMeta(mangaId, chIdx)
       .then(d => {
         const count = d.pageCount ?? 0;
         setPageCount(count);
-        // Restore saved page for this chapter
-        const saved = getProgress(username, mangaId);
+        const saved = getProgress(mangaId);
         if (saved && saved.chapterId === chapter.id && saved.page < count) {
           setCur(saved.page);
         } else {
@@ -35,25 +32,23 @@ export default function ReaderView({
         setLoading(false);
       })
       .catch(e => { setError(e.message); setLoading(false); });
-  }, [mangaId, chIdx, chapter.id, username]);
+  }, [mangaId, chIdx, chapter.id]);
 
-  // Save progress whenever page changes
   const persistProgress = useCallback((page, count) => {
-    saveProgress(username, mangaId, {
+    saveProgress(mangaId, {
       chapterId: chapter.id,
       chapterName: chapter.name,
       chapterNumber: chapter.chapterNumber,
       page,
       pageCount: count,
     });
-  }, [username, mangaId, chapter]);
+  }, [mangaId, chapter]);
 
   const goPage = (next) => {
     setCur(next);
     persistProgress(next, pageCount);
   };
 
-  // Save on scroll mode — save page 0 at minimum so chapter is tracked
   useEffect(() => {
     if (!loading && mode === "scroll" && pageCount > 0) {
       persistProgress(cur, pageCount);

@@ -7,7 +7,7 @@ function Spinner() {
   return <div className="spinner-wrap"><div className="spinner" /></div>;
 }
 
-export default function MangaDetail({ manga, onBack, onReadChapter, username }) {
+export default function MangaDetail({ manga, onBack, onReadChapter }) {
   const [full, setFull] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,7 +27,7 @@ export default function MangaDetail({ manga, onBack, onReadChapter, username }) 
 
   const addToLibrary = async () => {
     try { await gql(ADD_TO_LIB, { id: manga.id }); setInLib(true); }
-    catch { setInLib(true); } // optimistic
+    catch { setInLib(true); }
   };
 
   const removeFromLibrary = async () => {
@@ -52,8 +52,7 @@ export default function MangaDetail({ manga, onBack, onReadChapter, username }) 
   const chapters = (full?.chapters || []).slice().sort((a, b) => a.chapterNumber - b.chapterNumber);
   const thumb = thumbUrl(full?.thumbnailUrl ?? manga.thumbnailUrl);
 
-  // Resume progress
-  const progress = getProgress(username, manga.id);
+  const progress = getProgress(manga.id);
   const resumeChapter = progress
     ? chapters.find(c => c.id === progress.chapterId) ?? null
     : null;

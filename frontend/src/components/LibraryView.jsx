@@ -8,7 +8,7 @@ function Spinner() {
   return <div className="spinner-wrap"><div className="spinner" /></div>;
 }
 
-export default function LibraryView({ onSelectManga, username }) {
+export default function LibraryView({ onSelectManga }) {
   const [manga, setManga] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,7 +41,7 @@ export default function LibraryView({ onSelectManga, username }) {
       ) : (
         <div className="results-grid">
           {manga.map(m => {
-            const progress = getProgress(username, m.id);
+            const progress = getProgress(m.id);
             return (
               <div key={m.id} style={{ position: "relative" }}>
                 <MangaCard manga={m} onClick={onSelectManga} progress={progress} />
