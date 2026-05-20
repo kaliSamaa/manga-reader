@@ -60,14 +60,20 @@ export default function ReaderView({
   return (
     <div className="reader-overlay">
       <div className="reader-topbar">
-        <button className="icon-btn" onClick={onClose}>← Close</button>
+        <button className="icon-btn" onClick={onClose} title="Close">
+          <i className="fa-solid fa-xmark" />
+        </button>
         <div className="chapter-label">{chapter.name}</div>
         <div className="reader-controls">
           <button className={`mode-btn ${mode === "scroll" ? "active" : ""}`} onClick={() => setMode("scroll")}>Scroll</button>
           <button className={`mode-btn ${mode === "page" ? "active" : ""}`} onClick={() => setMode("page")}>Page</button>
         </div>
-        <button className="icon-btn" onClick={onPrev} disabled={!hasPrev}>← Prev</button>
-        <button className="icon-btn" onClick={onNext} disabled={!hasNext}>Next →</button>
+        <button className="icon-btn" onClick={onPrev} disabled={!hasPrev} title="Previous chapter">
+          <i className="fa-solid fa-circle-chevron-left" />
+        </button>
+        <button className="icon-btn" onClick={onNext} disabled={!hasNext} title="Next chapter">
+          <i className="fa-solid fa-circle-chevron-right" />
+        </button>
       </div>
 
       <div className={`reader-body ${mode}`}>
@@ -90,7 +96,7 @@ export default function ReaderView({
               className="page-nav left"
               onClick={() => goPage(Math.max(0, cur - 1))}
               disabled={cur === 0}
-            >‹</button>
+            ><i className="fa-solid fa-caret-left" /></button>
 
             {pageCount > 0 && (
               <img
@@ -105,7 +111,7 @@ export default function ReaderView({
               className="page-nav right"
               onClick={() => goPage(Math.min(pages.length - 1, cur + 1))}
               disabled={cur === pageCount - 1}
-            >›</button>
+            ><i className="fa-solid fa-caret-right" /></button>
 
             <div className="page-counter">{cur + 1} / {pageCount}</div>
           </div>

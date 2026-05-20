@@ -12,7 +12,6 @@ export default function MangaDetail({ manga, onBack, onReadChapter }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [inLib, setInLib] = useState(false);
-  const [downloading, setDownloading] = useState({});
 
   useEffect(() => {
     setLoading(true); setError(null);
@@ -35,16 +34,10 @@ export default function MangaDetail({ manga, onBack, onReadChapter }) {
     catch {}
   };
 
-  const downloadChapter = async (ch) => {
-    setDownloading(d => ({ ...d, [ch.id]: true }));
-    try { await fetch(`/api/suwayomi/api/v1/download/${ch.id}`); } catch {}
-    setDownloading(d => ({ ...d, [ch.id]: false }));
-  };
-
-  if (loading) return <><button className="back-btn" onClick={onBack}>← Back</button><Spinner /></>;
+  if (loading) return <><button className="back-btn" onClick={onBack}><i className="fa-solid fa-caret-left" /> Back</button><Spinner /></>;
   if (error) return (
     <div className="detail-view">
-      <button className="back-btn" onClick={onBack}>← Back</button>
+      <button className="back-btn" onClick={onBack}><i className="fa-solid fa-caret-left" /> Back</button>
       <div className="error-banner">Could not load manga: {error}</div>
     </div>
   );
@@ -59,7 +52,7 @@ export default function MangaDetail({ manga, onBack, onReadChapter }) {
 
   return (
     <div className="detail-view">
-      <button className="back-btn" onClick={onBack}>← Back</button>
+      <button className="back-btn" onClick={onBack}><i className="fa-solid fa-caret-left" /> Back</button>
 
       <div className="detail-hero">
         <div className="detail-cover">
@@ -81,19 +74,19 @@ export default function MangaDetail({ manga, onBack, onReadChapter }) {
 
           <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
             {!inLib
-              ? <button className="lib-btn" onClick={addToLibrary}>+ Add to Library</button>
+              ? <button className="lib-btn" onClick={addToLibrary}><i className="fa-solid fa-plus" /> Add to Library</button>
               : <>
-                  <button className="lib-btn added" disabled>✓ In Library</button>
-                  <button className="lib-btn remove" onClick={removeFromLibrary}>✕ Remove</button>
+                  <button className="lib-btn added" disabled><i className="fa-solid fa-check" /> In Library</button>
+                  <button className="lib-btn remove" onClick={removeFromLibrary}><i className="fa-solid fa-xmark" /> Remove</button>
                 </>
             }
             {resumeChapter && (
               <button
                 className="lib-btn resume-btn"
                 onClick={() => onReadChapter(resumeChapter, chapters, full.id)}
+                title={`Resume: ${resumeChapter.name}${progress.pageCount > 1 ? ` · p.${progress.page + 1}/${progress.pageCount}` : ""}`}
               >
-                ▶ Resume · {resumeChapter.name}
-                {progress.pageCount > 1 && ` · p.${progress.page + 1}/${progress.pageCount}`}
+                <i className="fa-solid fa-forward" />
               </button>
             )}
           </div>
@@ -112,16 +105,15 @@ export default function MangaDetail({ manga, onBack, onReadChapter }) {
                 <div>
                   <div className="chapter-name">
                     {ch.name}
-                    {isResume && <span className="resume-pip"> ▶</span>}
+                    {isResume && <i className="fa-solid fa-forward resume-pip" style={{ marginLeft: "6px" }} />}
                   </div>
                   {ch.uploadDate > 0 && (
                     <div className="chapter-date">{new Date(ch.uploadDate).toLocaleDateString()}</div>
                   )}
                 </div>
                 <div className="chapter-actions">
-                  <button className="chapter-btn read" onClick={() => onReadChapter(ch, chapters, full.id)}>Read</button>
-                  <button className="chapter-btn dl" onClick={() => downloadChapter(ch)} disabled={downloading[ch.id]}>
-                    {downloading[ch.id] ? "…" : "↓"}
+                  <button className="chapter-btn read" onClick={() => onReadChapter(ch, chapters, full.id)}>
+                    <i className="fa-solid fa-circle-chevron-right" />
                   </button>
                 </div>
               </div>

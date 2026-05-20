@@ -8,7 +8,7 @@ export default function Sidebar({ view, setView, setSelectedManga, sources, sele
   return (
     <aside className="sidebar">
       <div className="logo">
-        <div className="logo-mark">M</div>
+        <img src="/logo.png" alt="Manki" className="logo-mark" style={{ padding: 0, objectFit: "cover" }} />
         <div>
           <div className="logo-text">Manki</div>
           <div className="logo-sub">Manga Reader</div>
