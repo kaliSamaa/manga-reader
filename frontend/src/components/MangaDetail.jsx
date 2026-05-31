@@ -12,7 +12,7 @@ export default function MangaDetail({ manga, onBack, onReadChapter }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [inLib, setInLib] = useState(false);
-  const [downloading, setDownloading] = useState({}); // id -> "dl" | "done" | "err"
+  const [dlState, setDlState] = useState({}); // id -> "dl" | "err"
 
   useEffect(() => {
     setLoading(true); setError(null);
@@ -36,15 +36,22 @@ export default function MangaDetail({ manga, onBack, onReadChapter }) {
   };
 
   const handleDownload = async (ch) => {
-    setDownloading(d => ({ ...d, [ch.id]: "dl" }));
+    setDlState(d => ({ ...d, [ch.id]: "dl" }));
     try {
       await apiDownload(ch.id);
-      setDownloading(d => ({ ...d, [ch.id]: "done" }));
+      // Persist downloaded state in chapter data so it survives re-renders
+      setFull(f => ({
+        ...f,
+        chapters: f.chapters.map(c =>
+          c.id === ch.id ? { ...c, isDownloaded: true } : c
+        ),
+      }));
+      setDlState(d => ({ ...d, [ch.id]: null }));
     } catch (e) {
       console.error("Download failed:", e.message);
-      setDownloading(d => ({ ...d, [ch.id]: "err" }));
+      setDlState(d => ({ ...d, [ch.id]: "err" }));
+      setTimeout(() => setDlState(d => ({ ...d, [ch.id]: null })), 3000);
     }
-    setTimeout(() => setDownloading(d => ({ ...d, [ch.id]: null })), 3000);
   };
 
   if (loading) return (
@@ -115,7 +122,7 @@ export default function MangaDetail({ manga, onBack, onReadChapter }) {
         <div className="chapter-list">
           {chapters.map(ch => {
             const isResume = resumeChapter?.id === ch.id;
-            const dlState = downloading[ch.id];
+            const dl = dlState[ch.id];
             return (
               <div key={ch.id} className={`chapter-row ${isResume ? "chapter-row-resume" : ""}`}>
                 <div>
@@ -137,20 +144,20 @@ export default function MangaDetail({ manga, onBack, onReadChapter }) {
                     <i className="fa-solid fa-circle-chevron-right" />
                   </button>
                   <button
-                    className={`chapter-btn dl${dlState === "done" ? " done" : dlState === "err" ? " err" : ""}`}
+                    className={`chapter-btn dl${dl === "done" ? " done" : dl === "err" ? " err" : ""}`}
                     onClick={() => handleDownload(ch)}
-                    disabled={dlState === "dl" || ch.isDownloaded}
+                    disabled={dl === "dl" || ch.isDownloaded}
                     title={
                       ch.isDownloaded  ? "Already downloaded" :
-                      dlState === "dl"   ? "Downloading… (check Suwayomi queue)" :
-                      dlState === "done" ? "Downloaded!" :
-                      dlState === "err"  ? "Failed — check Suwayomi logs" :
+                      dl === "dl"   ? "Downloading… (check Suwayomi queue)" :
+                      dl === "done" ? "Downloaded!" :
+                      dl === "err"  ? "Failed — check Suwayomi logs" :
                       "Download chapter"
                     }
                   >
-                    {dlState === "dl"   ? <i className="fa-solid fa-spinner fa-spin" /> :
-                     dlState === "done" ? <i className="fa-solid fa-check" /> :
-                     dlState === "err"  ? <i className="fa-solid fa-xmark" /> :
+                    {dl === "dl"   ? <i className="fa-solid fa-spinner fa-spin" /> :
+                     dl === "done" ? <i className="fa-solid fa-check" /> :
+                     dl === "err"  ? <i className="fa-solid fa-xmark" /> :
                      ch.isDownloaded    ? <i className="fa-solid fa-circle-check" /> :
                                          <i className="fa-solid fa-download" />}
                   </button>

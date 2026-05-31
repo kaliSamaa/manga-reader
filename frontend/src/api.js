@@ -40,13 +40,20 @@ export async function searchSource(sourceId, query) {
 }
 
 export async function fetchManga(mangaId) {
-  const [info, chData] = await Promise.all([
-    rest(`/api/v1/manga/${mangaId}/`),
-    rest(`/api/v1/manga/${mangaId}/chapters`),
-  ]);
+  const d = await gql(`
+    query($id: Int!) {
+      manga(id: $id) {
+        id title description author status thumbnailUrl inLibrary genre
+        chapters {
+          nodes { id name isDownloaded chapterNumber uploadDate sourceOrder }
+        }
+      }
+    }
+  `, { id: mangaId });
+  const manga = d.manga;
   return {
-    ...info,
-    chapters: Array.isArray(chData) ? chData : chData.chapters || [],
+    ...manga,
+    chapters: manga.chapters?.nodes || [],
   };
 }
 
