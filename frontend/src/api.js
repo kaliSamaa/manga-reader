@@ -64,3 +64,24 @@ export async function fetchChapterMeta(mangaId, chapterIndex) {
 export function pageUrl(mangaId, chapterIndex, pageIndex) {
   return `${BASE}/api/v1/manga/${mangaId}/chapter/${chapterIndex}/page/${pageIndex}`;
 }
+
+// Enqueue chapter + start the downloader, then poll until isDownloaded
+export async function downloadChapter(chapterId) {
+  // 1. Add to download queue
+  await gql(
+    `mutation($id: Int!) { enqueueChapterDownload(input: { id: $id }) { downloadStatus { state } } }`,
+    { id: chapterId }
+  );
+  // 2. Make sure the downloader is running
+  await gql(`mutation { startDownloader { downloadStatus { state } } }`).catch(() => {});
+  // 3. Poll until isDownloaded (max 120s)
+  for (let i = 0; i < 60; i++) {
+    await new Promise(r => setTimeout(r, 2000));
+    const d = await gql(
+      `query($id: Int!) { chapter(id: $id) { isDownloaded } }`,
+      { id: chapterId }
+    );
+    if (d?.chapter?.isDownloaded) return;
+  }
+  throw new Error("Timed out — check the Downloads tab in Suwayomi");
+}
