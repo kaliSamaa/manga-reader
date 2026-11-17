@@ -4,15 +4,15 @@ services:
     image: ghcr.io/suwayomi/suwayomi-server:stable
     container_name: suwayomi
     volumes:
-      - ./data/downloads:/home/suwayomi/.local/share/Tachidesk/downloads
-      - ./data/suwayomi:/home/suwayomi/.local/share/Tachidesk
+      - ./data/downloads:/home/suwayomi/.local/share/Tachidesk/downloads:z
+      - ./data/suwayomi:/home/suwayomi/.local/share/Tachidesk:z
     ports:
       - "4567:4567"
     environment:
       - TZ=Asia/Jerusalem
       - FLARESOLVERR_ENABLED=true
       - FLARESOLVERR_URL=http://flaresolverr:8191
-      - EXTENSION_REPOS=["https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"]
+      - EXTENSION_STORES=["https://github.com/keiyoushi/extensions/raw/repo/index.pb"]
     restart: on-failure:3
     networks:
       - manga-net

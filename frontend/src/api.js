@@ -39,18 +39,30 @@ export async function searchSource(sourceId, query) {
   return data.mangaList || data || [];
 }
 
-export async function fetchManga(mangaId) {
-  const d = await gql(`
-    query($id: Int!) {
-      manga(id: $id) {
-        id title description author status thumbnailUrl inLibrary genre
-        chapters {
-          nodes { id name isDownloaded chapterNumber uploadDate sourceOrder }
-        }
+const MANGA_QUERY = `
+  query($id: Int!) {
+    manga(id: $id) {
+      id title description author status thumbnailUrl inLibrary genre initialized
+      chapters {
+        nodes { id name isDownloaded chapterNumber uploadDate sourceOrder }
       }
     }
-  `, { id: mangaId });
-  const manga = d.manga;
+  }
+`;
+
+export async function fetchManga(mangaId) {
+  let manga = (await gql(MANGA_QUERY, { id: mangaId })).manga;
+  // Search results are stubs: details and chapters only exist in Suwayomi's DB
+  // after they've been fetched from the source once, so fetch them online.
+  const needDetails = !manga.initialized;
+  const needChapters = !manga.chapters?.nodes?.length;
+  if (needDetails || needChapters) {
+    await Promise.all([
+      needDetails && rest(`/api/v1/manga/${mangaId}/?onlineFetch=true`).catch(() => {}),
+      needChapters && rest(`/api/v1/manga/${mangaId}/chapters?onlineFetch=true`).catch(() => {}),
+    ]);
+    manga = (await gql(MANGA_QUERY, { id: mangaId })).manga;
+  }
   return {
     ...manga,
     chapters: manga.chapters?.nodes || [],

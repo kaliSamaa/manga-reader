@@ -65,6 +65,12 @@ Suwayomi needs extensions installed before you can search manga.
    - **MangaDex** (huge, legal, multi-language)
    - **MangaPlus** (official Shonen Jump titles)
    - **Cubari** (aggregator)
+   - **XOXO Comics** (western comics: Marvel, DC, Image…)
+
+   Extensions come from the Keiyoushi store set via `EXTENSION_STORES` in
+   `docker-compose.yml` (`https://github.com/keiyoushi/extensions/raw/repo/index.pb`).
+   On an existing install the env var isn't applied to `server.conf`, so add the store
+   once under Settings → Browse → Extension stores if the extension list is empty.
 
 3. Done — go back to `http://your-server-ip:3000` and your sources will appear in the sidebar dropdown.
 
