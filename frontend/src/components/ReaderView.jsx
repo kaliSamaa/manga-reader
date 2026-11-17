@@ -6,6 +6,44 @@ function Spinner() {
   return <div className="spinner-wrap"><div className="spinner" /></div>;
 }
 
+const MAX_PARALLEL = 3; // pages fetched at once; sources rate-limit bursts
+
+// One page image with a visible error state and a retry button,
+// instead of the browser's bare alt text when the source fails.
+function PageImage({ src, index, paged, onDone }) {
+  const [status, setStatus] = useState("loading");
+  const [attempt, setAttempt] = useState(0);
+
+  useEffect(() => { setStatus("loading"); setAttempt(0); }, [src]);
+
+  const url = attempt ? `${src}${src.includes("?") ? "&" : "?"}retry=${attempt}` : src;
+  const cls = `reader-page${paged ? " paged" : ""}`;
+
+  if (status === "error") {
+    return (
+      <div className={`${cls} page-failed`}>
+        <span>Page {index + 1} failed to load</span>
+        <button className="mode-btn" onClick={() => { setStatus("loading"); setAttempt(a => a + 1); }}>
+          <i className="fa-solid fa-rotate-right" /> Retry
+        </button>
+      </div>
+    );
+  }
+  return (
+    <>
+      {status === "loading" && <div className={`${cls} page-placeholder`}><div className="spinner" /></div>}
+      <img
+        src={url}
+        alt=""
+        className={cls}
+        style={status === "loading" ? { display: "none" } : undefined}
+        onLoad={() => { setStatus("ok"); onDone?.(index, true); }}
+        onError={() => { setStatus("error"); onDone?.(index, false); }}
+      />
+    </>
+  );
+}
+
 export default function ReaderView({
   chapter, mangaId, onClose, onPrev, onNext, hasPrev, hasNext,
 }) {
@@ -14,11 +52,14 @@ export default function ReaderView({
   const [error, setError] = useState(null);
   const [mode, setMode] = useState("scroll");
   const [cur, setCur] = useState(0);
+  const [limit, setLimit] = useState(MAX_PARALLEL);
+  const [results, setResults] = useState({}); // page index -> true (ok) / false (failed)
 
   const chIdx = chapter.index ?? chapter.sourceOrder ?? 0;
 
   useEffect(() => {
     setLoading(true); setError(null); setPageCount(0);
+    setLimit(MAX_PARALLEL); setResults({});
     fetchChapterMeta(mangaId, chIdx)
       .then(d => {
         const count = d.pageCount ?? 0;
@@ -57,6 +98,15 @@ export default function ReaderView({
 
   const pages = Array.from({ length: pageCount }, (_, i) => i);
 
+  const onPageDone = useCallback((i, ok) => {
+    setResults(r => (i in r && r[i] === ok ? r : { ...r, [i]: ok }));
+    setLimit(l => l + 1);
+  }, []);
+
+  const doneCount = Object.keys(results).length;
+  const failedCount = Object.values(results).filter(ok => !ok).length;
+  const sourceDown = doneCount >= MAX_PARALLEL && failedCount === doneCount;
+
   return (
     <div className="reader-overlay">
       <div className="reader-topbar">
@@ -80,14 +130,17 @@ export default function ReaderView({
         {loading && <Spinner />}
         {error && <div className="error-banner">Failed to load pages: {error}</div>}
 
+        {!loading && !error && sourceDown && (
+          <div className="error-banner reader-banner">
+            The source isn't serving images for this chapter right now. It may be
+            temporarily blocking requests — try again later or use another source.
+          </div>
+        )}
+
         {!loading && !error && mode === "scroll" && pages.map((i) => (
-          <img
-            key={i}
-            src={pageUrl(mangaId, chIdx, i)}
-            alt={`Page ${i + 1}`}
-            className="reader-page"
-            loading="lazy"
-          />
+          i < limit
+            ? <PageImage key={i} index={i} src={pageUrl(mangaId, chIdx, i)} onDone={onPageDone} />
+            : <div key={i} className="reader-page page-placeholder" />
         ))}
 
         {!loading && !error && mode === "page" && (
@@ -99,11 +152,12 @@ export default function ReaderView({
             ><i className="fa-solid fa-caret-left" /></button>
 
             {pageCount > 0 && (
-              <img
+              <PageImage
                 key={cur}
+                index={cur}
+                paged
                 src={pageUrl(mangaId, chIdx, cur)}
-                alt={`Page ${cur + 1}`}
-                className="reader-page paged"
+                onDone={onPageDone}
               />
             )}
 
